@@ -1,0 +1,11 @@
+[Unit]
+Description=Run TPMS retry-cache retention daily
+
+[Timer]
+OnCalendar=*-*-* 02:15:00
+RandomizedDelaySec=10m
+Persistent=true
+Unit=tpms-retention.service
+
+[Install]
+WantedBy=timers.target

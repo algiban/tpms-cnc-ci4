@@ -1,0 +1,14 @@
+/var/log/nginx/tpms.access.log /var/log/nginx/tpms.error.log /var/log/php8.3-fpm-tpms-slow.log {
+    daily
+    rotate 7
+    size 100M
+    missingok
+    notifempty
+    compress
+    delaycompress
+    sharedscripts
+    postrotate
+        [ ! -f /run/nginx.pid ] || kill -USR1 `cat /run/nginx.pid`
+        systemctl reload php8.3-fpm >/dev/null 2>&1 || true
+    endscript
+}

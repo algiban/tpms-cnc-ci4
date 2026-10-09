@@ -1,0 +1,32 @@
+TPMS CI4 — QA STATUS 2026-10-05
+
+Scope current revision:
+- mid-production Setting reuses production_shift_detail
+- Operator Sick critical stop / PIC resolve / Admin Planning replacement
+- Operator history and same-detail resume
+
+STATIC VALIDATION
+PASS 199 PHP files in app + tests: php -l, 0 syntax failures.
+PASS New routes/actions are present: operator-sick, operator-sick-resolve, operator-replacement.
+PASS operator_change_required is treated as an active/locked state by Planning/Runtime/Tool guards.
+PASS Monitoring/Dashboard/Machine Utility map operator_change_required to Alarm.
+PASS Production Detail exposes operator history.
+PASS API/state exposes persistent recovery flags for replacement flow.
+
+REGRESSION CASES ADDED TO tests/refactor/run.php
+- mid-production Setting preserves production_id, production_shift_detail_id and counter_epoch
+- Setting cannot finish before Tool/position confirmation
+- Operator Sick requires active Operator RFID
+- Operator Sick creates critical/operator_stop alert
+- replacement blocked before PIC resolve
+- replacement blocked before Admin Planning update
+- state after Planning update becomes operator_replacement_ready
+- replacement Operator resumes same detail/counter epoch
+- main detail stores replacement Operator
+- operator history preserves previous Operator and closes replacement history on finish
+
+ENVIRONMENT LIMITATION
+`php spark` cannot boot in this runner because PHP mbstring is unavailable:
+Call to undefined function CodeIgniter\\Autoloader\\mb_strpos().
+Therefore database migration and integration assertions were not executed here.
+Run them on the project machine after `php spark migrate` using a disposable *_test / *_qa database.

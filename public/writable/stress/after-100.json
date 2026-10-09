@@ -1,0 +1,30 @@
+{
+    "captured_at": "2026-10-03T14:32:20+07:00",
+    "database": "tpms_ci4",
+    "database_bytes": 2867200,
+    "status": {
+        "Uptime": 2723,
+        "Threads_connected": 1,
+        "Threads_running": 6,
+        "Connections": 6762,
+        "Aborted_connects": 0,
+        "Questions": 35653,
+        "Queries": 35654,
+        "Slow_queries": 0,
+        "Created_tmp_tables": 6310,
+        "Created_tmp_disk_tables": 5808,
+        "Innodb_buffer_pool_reads": 2649,
+        "Innodb_buffer_pool_read_requests": 124818,
+        "Innodb_row_lock_current_waits": 0,
+        "Innodb_row_lock_time": 0,
+        "Innodb_row_lock_waits": 0,
+        "Bytes_received": 7610738,
+        "Bytes_sent": 19925877
+    },
+    "variables": {
+        "max_connections": 151,
+        "innodb_buffer_pool_size": 16777216,
+        "slow_query_log": "OFF",
+        "long_query_time": 10
+    }
+}

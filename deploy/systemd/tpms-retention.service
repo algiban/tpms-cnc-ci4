@@ -1,0 +1,13 @@
+[Unit]
+Description=TPMS production_api_events retention cleanup
+After=network.target mysql.service mariadb.service
+
+[Service]
+Type=oneshot
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/tpms/current
+ExecStart=/usr/bin/php spark tpms:retention --execute --target production_api_events
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7

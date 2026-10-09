@@ -1,0 +1,34 @@
+# /etc/mysql/conf.d/tpms.cnf (or /etc/mysql/mariadb.conf.d/60-tpms.cnf)
+# Conservative baseline for MySQL/MariaDB on a combined 4 vCPU / 8 GB host.
+# Do not copy memory values blindly to a smaller host.
+
+[mysqld]
+# Keep enough headroom for PHP-FPM + OS. On a dedicated DB server, this can be higher.
+innodb_buffer_pool_size = 3G
+innodb_log_buffer_size = 64M
+innodb_flush_log_at_trx_commit = 1
+
+# Connection count should be larger than PHP-FPM concurrency, but not enormous.
+max_connections = 150
+thread_cache_size = 64
+
+# Temporary table limits are per-connection ceilings; oversized values can exhaust RAM.
+tmp_table_size = 64M
+max_heap_table_size = 64M
+
+# Import/export headroom.
+max_allowed_packet = 64M
+
+# Metadata/table cache for the growing TPMS schema.
+table_open_cache = 4000
+
+# Keep slow-query visibility enabled in production.
+slow_query_log = ON
+long_query_time = 0.5
+min_examined_row_limit = 100
+
+# Required for useful runtime diagnostics on supported MySQL/MariaDB builds.
+performance_schema = ON
+
+# Optional after DB users/grants have been verified to use IP/localhost patterns:
+# skip_name_resolve = ON

@@ -1,0 +1,17 @@
+{
+  "generated_at": "2026-10-03T00:00:00+07:00",
+  "warning": "EXAMPLE ONLY - do not place real tokens in source control",
+  "devices": [
+    {
+      "id": 1,
+      "mac_address": "AA:BB:CC:DD:EE:01",
+      "token": "REPLACE_WITH_STAGING_DEVICE_TOKEN",
+      "current_slot_id": 1,
+      "production_id": 101,
+      "production_shift_detail_id": 201,
+      "counter_epoch": "example-counter-epoch",
+      "counter_total": 0,
+      "shift_status": "running"
+    }
+  ]
+}
